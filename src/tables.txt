@@ -1,0 +1,55 @@
+Researchers:
+- r_id (Primary key)
+- first_name
+- last_name
+- email
+- organization
+
+Calls for proposals:
+- call_id/number (Primary key)
+- title 
+- app_deadline
+- description
+- area
+- status
+
+Grant proposals:
+proposal_id (Primary key)
+call_id (Foreign key - calls for proposals)
+amount_requested 
+principal_investigator (Foreign Key - Researchers)
+application_status 
+award_amount
+award_date
+
+Competitions:
+- comp_id (Primary Key)
+- call_id (Foreign key - calls for proposals)
+
+Proposal Collaborators:
+- proposal_id (Foreign key - Grant proposal)
+- collaborator_id (Foreign key - Researchers)
+
+Reviewers:
+- reviewer_id (Primary key) - could be fk referencing researchers
+- reviewer_name
+- conflicts_of_interest (not sure how to implement)
+
+Review Assignments:
+- assignment_id (Primary Key)
+- comp_id (Foreign key - competitions)
+- reviewer_id (Foreign key - reviewers)
+- deadline
+- status 
+
+Co-Reviewers:
+- assignment_id (Foreign key - review assignments)
+- reviewer_id (Foreign key - reviewers)
+
+Meetings:
+- meeting_id (Primary key)
+- meeting_date 
+
+Meeting_Review_Assignments:
+- meeting_id (Foreign Key - Meetings)
+- assignment_id (Foreign Key - Review Assignments)
