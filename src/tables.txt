@@ -14,30 +14,25 @@ Calls for proposals:
 - status
 
 Grant proposals:
-proposal_id (Primary key)
-call_id (Foreign key - calls for proposals)
-amount_requested 
-principal_investigator (Foreign Key - Researchers)
-application_status 
-award_amount
-award_date
-
-Competitions:
-- comp_id (Primary Key)
+- proposal_id (Primary key)
 - call_id (Foreign key - calls for proposals)
+- amount_requested 
+- principal_investigator (Foreign Key - Researchers)
+- application_status 
+- award_amount
+- award_date
 
 Proposal Collaborators:
 - proposal_id (Foreign key - Grant proposal)
 - collaborator_id (Foreign key - Researchers)
 
 Reviewers:
-- reviewer_id (Primary key) - could be fk referencing researchers
-- reviewer_name
+- r_id (foreign key - reviewers)
 - conflicts_of_interest (not sure how to implement)
 
 Review Assignments:
 - assignment_id (Primary Key)
-- comp_id (Foreign key - competitions)
+- call_id (Foreign key - competitions)
 - reviewer_id (Foreign key - reviewers)
 - deadline
 - status 
@@ -53,3 +48,20 @@ Meetings:
 Meeting_Review_Assignments:
 - meeting_id (Foreign Key - Meetings)
 - assignment_id (Foreign Key - Review Assignments)
+
+Assuming that competitions are the same as calls for proposals
+
+We only need to consider the tables that are don't have foreign key dependencies.
+
+Grant proposals:
+proposal_id -> call_id, amount_requested, principal_investigator, application_status, award_amount, award_date
+non-trivial, but proposal_id is a key
+
+Reviewers:
+r_id -> conflicts_of_interest (non-trivial) r_id is a key, so its BCNF
+
+Collaborators:
+(proposal_id, collaborator_id) -> (proposal_id, collaborator_id), trivial, so BCNF
+
+Review assignments
+assignment_id ->
