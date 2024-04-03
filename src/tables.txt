@@ -64,4 +64,15 @@ Collaborators:
 (proposal_id, collaborator_id) -> (proposal_id, collaborator_id), trivial, so BCNF
 
 Review assignments
-assignment_id ->
+assignment_id -> call_id, reviewer_id, deadline, status
+non-trivial, assignment_id is a key, so it's in BCNF
+
+Co-reviewers
+contains only trivial FDs, so it's in BCNF
+
+Meetings
+meeting_id -> meeting_date (non-trivial)
+meeting_id is a key, so BCNF
+
+Meeting_Review_Assignments
+contains only trivial FD's so it's in BCNF
